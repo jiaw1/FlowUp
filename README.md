@@ -4,8 +4,10 @@ Project for course ELEC-E7845 Smart Wearables II.
 
 This repository contains all the files sorted into specific folder(s) for
 
-- Hardware / Embedded programming:
+- hardware / embedded programming:
   - final_demo
+- data collection:
+  - data_collection
 - graphical user interface
   - game_demo
 
