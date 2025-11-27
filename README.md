@@ -4,8 +4,8 @@ Project for course ELEC-E7845 Smart Wearables II.
 
 This repository contains all the files sorted into specific folder(s) for
 
-- arduino software:
-  - arduino
+- Arduino IDE software:
+  - Hardware (Seeeduino Xiao RP2040)
 - graphical user interface
   - GUI
 
