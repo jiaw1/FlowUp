@@ -7,6 +7,6 @@ This repository contains all the files sorted into specific folder(s) for
 - Arduino IDE software:
   - Hardware (Seeeduino Xiao RP2040)
 - graphical user interface
-  - GUI
+  - GUI (game for respiration and EMG)
 
 Copyright (c) 2025 Wenying Jia. All rights reserved.
