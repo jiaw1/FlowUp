@@ -7,6 +7,6 @@ This repository contains all the files sorted into specific folder(s) for
 - Hardware / Embedded programming:
   - main
 - graphical user interface
-  - GUI (game for respiration and EMG)
+  - game_demo
 
 Copyright (c) 2025 Wenying Jia. All rights reserved.
