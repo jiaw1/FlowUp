@@ -6,7 +6,7 @@ This repository contains all the files sorted into specific folder(s) for
 
 - hardware / embedded programming:
   - final_demo
-- data collection:
+- data collection and machine learning:
   - data_collection
 - graphical user interface
   - game_demo
