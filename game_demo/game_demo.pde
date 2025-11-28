@@ -53,7 +53,7 @@ Serial myPort;
 int sensorValue = 0;
 
 // thresholds
-int breathThreshold = 160; // rsp: jump if value > threshold
+int breathThreshold = 330; // rsp: jump if value > threshold
 int emgThreshold    = 500; // EMG: remove if value > threshold
 
 // EMG edge detection
@@ -102,7 +102,7 @@ void setup() {
   resetEmgGame();
 
   // SERIAL SETUP
-  myPort = new Serial(this, "COM23", 9600);
+  myPort = new Serial(this, "COM15", 9600);
   myPort.bufferUntil('\n');  // one reading per line
 }
 
@@ -252,7 +252,7 @@ void respirationGame() {
   textSize(15);
   String instructions = 
     "Respiration Game\n" +
-    "Inhale → sensor > " + breathThreshold + " → character jumps\n" +
+    "Inhale → character jumps\n" +
     "Exhale → character falls with gravity\n" +
     "(click to go back)";
   text(instructions, 20, 20);
@@ -325,7 +325,7 @@ void emgGame() {
   textSize(18);
   String instructions = 
     "EMG Game\n" +
-    "Flex → sensor > " + emgThreshold + " → removes 1 character\n" +
+    "Flex → removes 1 character\n" +
     "Relax → re-arm next removal\n" +
     "(click to go back)";
   text(instructions, 600, 40);
