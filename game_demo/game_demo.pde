@@ -53,8 +53,8 @@ Serial myPort;
 int sensorValue = 0;
 
 // thresholds
-int breathThreshold = 330; // rsp: jump if value > threshold
-int emgThreshold    = 500; // EMG: remove if value > threshold
+int breathThreshold = 240; // rsp: jump if value > threshold
+int emgThreshold    = 360; // EMG: remove if value > threshold
 
 // EMG edge detection
 boolean emgCanRemove = true;
@@ -325,8 +325,7 @@ void emgGame() {
   textSize(18);
   String instructions = 
     "EMG Game\n" +
-    "Flex → removes 1 character\n" +
-    "Relax → re-arm next removal\n" +
+    "Bend your arm → removes 1 character\n" +
     "(click to go back)";
   text(instructions, 600, 40);
 
