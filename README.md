@@ -11,4 +11,10 @@ This repository contains all the files sorted into specific folder(s) for
 - graphical user interface
   - game_demo
 
+Additional files in this repository are for the project website.
+
+The project website can be accessed from the following link:
+
+https://jiaw1.github.io/FlowUp
+
 Copyright (c) 2025 Wenying Jia. All rights reserved.
