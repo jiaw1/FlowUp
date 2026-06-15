@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css">
+  <title>FlowUp</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1><a href="index.html">FlowUp &#127811;</a></h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="overview.html">Overview</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="sensor.html">Sensor</a></li>
+        <li><a href="hardware.html">Hardware</a></li>
+        <li><a href="software.html">Software</a></li>
+        <li><a href="testing.html">Testing</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hardware Design -->
+    <section id="hardware">
+      <div class="section-title">
+        <span>Hardware Design</span>
+        <h3>Textile-Based Physiological Sensing</h3>
+        <p>
+            Accurate physiological measurement requires appropriate placement of each sensor to ensure signal quality, 
+            comfort, and minimal interference with gameplay.
+            Our respiration is measured using an elastic respiration belt placed around the lower ribs. This position allows 
+            the belt to detect chest expansion and contraction during inhalation and exhalation. 
+            The lower-rib placement provides a good balance between signal sensitivity and user comfort. 
+            This design enables the sensor to capture both shallow and deep breathing patterns without restricting movement. 
+            The belt is designed to fit snugly, but not too tightly, ensuring accurate respiration tracking while remaining 
+            comfortable throughout the interactive experience.
+            Our GSR is measured using two electrodes placed on the index and middle fingers. 
+            This placement provides high-quality electrodermal signals because the fingers contain a high density of eccrine 
+            sweat glands \cite{dawson2007}. 
+            Our sEMG is measured using three surface electrodes placed on the arm. The electrodes are aligned parallel to the 
+            muscle fibers and spaced according to standard EMG guidelines to reduce crosstalk and improve signal quality.
+        </p>
+        <br/>
+        </div>
+        <div class="two-column">
+        <div class="image-box">
+            <figure id="fig-circuit">
+              <a href="images/flowup_circuit.png" target="_blank">
+                <img src="images/flowup_circuit.png" alt="Circuit Diagram for respiration, sEMG and GSR Sensing" />
+              </a>
+          <figcaption>
+          <strong>Circuit Design</strong>
+          </figcaption>
+          </figure>
+        </div>
+        <div>
+          <p>
+            The <a href="#fig-circuit">circuit design</a> integrates sensing channels for sEMG, respiration, and GSR into a single 
+            data acquisition system. 
+            Because sEMG produces microvolt-level signals, the sEMG channel includes a dedicated analog front end consisting of a 
+            <a href="#fig-amplifier">differential instrumentation amplifier</a> based on the AD620AN, a widely used amplifier for biosignal acquisition.
+            An instrumentation amplifier is a precision differential amplifier specifically designed for low-level signal 
+            acquisition in noisy environments.
+            In addition to the amplification stage, we applied low-pass filtering and signal smoothing to reduce noise. 
+            On the software side, a lightweight first-order exponential filter is used:
+          </p>
+          $$
+            x_{new} = (1-\lambda)x_{old} + \lambda x
+          $$
+          <p>
+            where \(x\) is the incoming raw sample,
+            \(x_{new}\) is the filtered output,
+            \(x_{old}\) is the previous filtered value,
+            and \(\lambda\) is the smoothing factor.
+            This formulation corresponds to a first-order RC low-pass filter:
+          </p>
+          $$
+            \lambda = \frac{dt}{RC+dt}
+          $$
+          <p>
+            where \(dt\) is the sampling interval. The approximate cut-off frequency
+            of the digital filter is given by:
+          </p>
+          $$
+            f_c \approx \frac{\lambda}{2\pi dt (1-\lambda)}
+          $$
+        </div>
+      </div>
+      <br/>
+      <div class="image-box">
+            <figure id="fig-amplifier">
+              <a href="images/flowup_amplifier.png" target="_blank">
+                <img src="images/flowup_amplifier.png" alt="Instrumentation Amplifier Circuit Design." />
+              </a>
+          <figcaption>
+          <strong>Instrumentation Amplifier Circuit Design</strong>
+          </figcaption>
+          </figure>
+      </div>
+      <br/>
+      <div class="two-column">
+        <div>
+        <p>
+            After completing the circuit design, we constructed our first <a href="#fig-hardware">hardware prototype</a> 
+            using e-textile materials to create a flexible and wearable system. 
+            During the development process, we decided to divide the hardware into four separate modules to improve 
+            compatibility and usability across the three sensing modalities. 
+            This decision was motivated by the fact that our prototype supports two independent games, 
+            each requiring a different combination of sensors. User testing also indicated that the system would be 
+            more convenient if users only needed to wear the components required for the selected game.
+        </p>
+        </div>
+        <div class="image-box">
+            <figure id="fig-hardware">
+              <a href="images/flowup_hardware.png" target="_blank">
+                <img src="images/flowup_hardware.png" alt="Flexible Hardware Using E-Textiles." />
+              </a>
+          <figcaption>
+          <strong>Flexible Hardware Using E-Textiles.</strong>
+          </figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="two-column">
+        <div class="image-box">
+            <figure id="fig-final-prototype">
+              <a href="images/flowup_final_prototype.jpg" target="_blank">
+                <img src="images/flowup_final_prototype.jpg" alt="Updated Hardware Prototype." />
+              </a>
+          <figcaption>
+          <strong>Updated Hardware Prototype.</strong>
+          </figcaption>
+          </figure>
+        </div>
+        <div>
+        <p>
+            In our updated final prototype, the mainboard is connected to the sensors using conductive metal snap buttons,
+            allowing the modules to be easily attached and detached. 
+            The sEMG sensors are integrated into fabric strips secured to the arm with hook-and-loop fasteners. 
+            The GSR sensors are designed as small textile finger rings, and the respiration sensor is an adjustable belt worn 
+            around the torso.
+        </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+  <div class="footer-text">
+    <p>
+      &copy; ELEC-E7845 Smart Wearables II 2025 Autumn Project: FlowUp. All rights reserved.
+    </p>
+    <p>
+      Authors: Wenying Jia, Kecen Yin, Yifan Zhu, Yumeng Sun
+    </p>
+  </div>
+  <div class="footer-logo">
+    <img src="images/aalto.png" alt="Aalto University School of Electrical Engineering" height="80">
+  </div>
+</footer>
+
+</body>
+</html>

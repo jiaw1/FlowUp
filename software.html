@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css">
+  <title>FlowUp</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1><a href="index.html">FlowUp &#127811;</a></h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="overview.html">Overview</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="sensor.html">Sensor</a></li>
+        <li><a href="hardware.html">Hardware</a></li>
+        <li><a href="software.html">Software</a></li>
+        <li><a href="testing.html">Testing</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Interaction and Software -->
+    <section id="software">
+      <div class="section-title">
+        <span>Software and Interface Design</span>
+        <h3>Interactive Game Interface</h3>
+        <p>
+            We used a binary logistic classification algorithm to classify triceps sEMG signals. 
+            The primary objective of the model is to distinguish between relaxed and active muscle states, 
+            enabling the system to determine whether the user is intentionally activating their triceps to trigger in-game actions 
+            and interact with on-screen elements. Specifically, the model classifies real-time sEMG signals into two labels: 
+            <strong>Relaxed (0)</strong> and <strong>Active Contraction (1)</strong>.
+        </p>
+        <br/>
+        <p>
+            We chose a Logistic Regression model for the following reasons:
+        </p>
+        <br/>
+        <div class="list">
+          <div class="list-item">
+            <strong>1. Low latency:</strong>
+            <p>It can run at 50 Hz on embedded devices.</p>
+          </div>
+          <div class="list-item">
+            <strong>2. Explainability:</strong>
+            <p>The feature weights (<em>w<sub>mean</sub></em>, <em>w<sub>rms</sub></em>, <em>w<sub>mav</sub></em>, 
+              <em>w<sub>wl</sub></em>) clearly indicate which aspects of muscle activity contribute to the classification.</p>
+          </div>
+          <div class="list-item">
+            <strong>3. Suitable for small datasets:</strong>
+            <p>It performs well with short electromyographic signal recordings.</p>
+          </div>
+          <div class="list-item">
+            <strong>4. Easy deployment:</strong>
+            <p>The model can be exported as a <code>.pkl</code> file and reimplemented in Java using only simple mathematical operations.</p>
+          </div>
+        </div>
+        <br/>
+        <p>
+          We extract four commonly used EMG features:
+        </p>
+        <br/>
+        <div class="list">
+            <div class="list-item">
+              <strong>1. Mean (MEAN):</strong>
+              <p>Represents the baseline level of muscle activity.</p>
+            </div>
+            <div class="list-item">
+              <strong>2. Root Mean Square (RMS):</strong>
+              <p>Reflects the intensity of muscle contraction.</p>
+            </div>
+            <div class="list-item">
+              <strong>3. Mean Absolute Value (MAV):</strong>
+              <p>Indicates muscle activation amplitude and overall muscle tone.</p>
+            </div>
+            <div class="list-item">
+              <strong>4. Waveform Length (WL):</strong>
+              <p>Describes the complexity of the signal waveform and its rapid variations.</p>
+            </div>
+          </div>
+          <br/>
+          <p>
+            These four features effectively capture signal intensity, amplitude, and waveform characteristics, 
+            providing reliable separation between relaxed and active muscle states.
+            Additionally, we implemented a separate module for the stretchable respiration sensor to support 
+            deep-breathing training. 
+            This module continuously estimates the user's breathing state and controls the behaviour of a training 
+            ball within the game environment.
+          </p>
+          <br/>
+          <p>
+            For sEMG signal acquisition, preprocessing is essential because sEMG is a weak biosignal and may become 
+            saturated without proper signal conditioning. To reduce noise and prevent possible saturation, we applied 
+            a low-pass filter in addition to the hardware-side amplification system. Data were collected using the Processing IDE 
+            via a simple serial communication protocol. 
+            The collected data were saved as CSV files and subsequently processed in IntelliJ IDEA. For model training, datasets 
+            were collected from four participants.
+            To obtain accurately labeled datasets, the training data were recorded such that the first 0–30 s contained stable 
+            resting-state signals, while the 30–60 s interval contained active muscle contraction signals. 
+            We labeled the first 1500 samples as class <strong>0 (Relaxed)</strong> and the remaining samples as class 
+            <strong>1 (Active Contraction)</strong>.
+            After labeling, the data were segmented into windows, the four EMG features were extracted, and the corresponding labels
+            were assigned to each window. 
+            These extracted features were then used to train the logistic regression classifier, which was exported as a <code>.pkl</code> 
+            file containing the feature scaler (mean and variance), model coefficients, all model parameters, and the bias term. 
+            This allows the model to be loaded directly or reimplemented in Java for real-time deployment.
+          </p>
+      </div>
+      <div class="two-column">
+        <div>
+          <p>
+            To enable the visualization of physiological data and create an engaging training experience, we designed and iterated 
+            on several user interface (UI) prototypes. 
+            All interface designs support at least two interaction modes: sEMG activation training and breath-based gameplay 
+            (the GSR monitoring mode was removed in later iterations).
+            The <a href="#fig-ui">first version of the UI</a> design and implementation provided a basic interactive dashboard-style 
+            layout with three selectable modes. 
+            This prototype focused primarily on functional clarity and physiological sensor feedback visualization rather than a polished, 
+            user-centered experience.
+          </p>
+        </div>
+        <div class="image-box">
+            <figure id="fig-ui">
+              <a href="images/flowup_ui.png" target="_blank">
+                <img src="images/flowup_ui.png" alt="Initial FlowUp Game Interface." />
+              </a>
+          <figcaption>
+          <strong>Initial User Interface.</strong>
+          </figcaption>
+          </figure>
+        </div>
+      </div>
+      <br/>
+      <p>
+        Based on early user testing, we further developed three dedicated interaction screens to improve the 
+        visual style, playfulness, and interaction clarity.
+      </p>
+      <br/>
+      <div class="grid">
+        <div class="card-small">
+          <h4>FlowUp Main Menu</h4>
+          <p>
+            This UI introduces a friendly, game-like landing page where users can choose between <strong>Breath Playground</strong> and <strong>Move & Stretch</strong>. 
+            The design emphasizes calmness and accessibility, using animated character illustrations to represent relaxation and physical activity.
+          </p>
+          <br/>
+          <br/>
+          <div class="image-box-small">
+            <img src="images/flowup_game.png" alt="FlowUp Main Menu." />
+          </div>
+        </div>
+        <div class="card-small">
+          <h4>Breath Playground</h4>
+          <p>
+            This UI provides a breathing-controlled motion game in which slow inhalation raises the character and exhalation lowers it. 
+            The interactive design helps users maintain focus while encouraging slow, rhythmic breathing patterns that promote relaxation.
+          </p>
+          <br/>
+          <br/>
+          <div class="image-box-small">
+            <img src="images/flowup_breath_game.png" alt="Breathing Playground." />
+          </div>
+        </div>
+        <div class="card-small">
+          <h4>Move & Stretch</h4>
+          <p>
+            This UI presents a simple muscle activation mini-game. 
+            The user defeats on-screen characters (10 in total) by flexing their arm muscles, 
+            as detected by the sEMG classifier. 
+            This design transforms muscle activation exercises into an engaging game, increasing user motivation and participation.
+          </p>
+          <br/>
+          <div class="image-box-small">
+            <img src="images/flowup_semg_game.png" alt="sEMG Activation Game" />
+          </div>
+        </div>
+      </div>
+      <br/>
+      <p>
+        Together, these UI designs illustrate our iterative software development process - from the practical dashboard design 
+        and development to more sophisticated, market-oriented, game-oriented interfaces. 
+        The redesigned interface emphasizes commerciality, clarity, and physiological engagement, enabling and supporting 
+        respiratory modulation and EMG-based activation to support daily relaxation and training.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+  <div class="footer-text">
+    <p>
+      &copy; ELEC-E7845 Smart Wearables II 2025 Autumn Project: FlowUp. All rights reserved.
+    </p>
+    <p>
+      Authors: Wenying Jia, Kecen Yin, Yifan Zhu, Yumeng Sun
+    </p>
+  </div>
+  <div class="footer-logo">
+    <img src="images/aalto.png" alt="Aalto University School of Electrical Engineering" height="80">
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css">
+  <title>FlowUp</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1><a href="index.html">FlowUp &#127811;</a></h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="overview.html">Overview</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="sensor.html">Sensor</a></li>
+        <li><a href="hardware.html">Hardware</a></li>
+        <li><a href="software.html">Software</a></li>
+        <li><a href="testing.html">Testing</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- User Testing -->
+    <section id="testing">
+      <div class="section-title">
+        <span>User Testing</span>
+        <h3>Protype Experimental Validation</h3>
+        <div>
+          <p>
+            The project progressed through multiple rounds of garment prototyping, hardware testing, interaction design, and user feedback. 
+            Based on user feedback, we have designed several <a href="#fig-test">sketches for the prototype</a>.
+          </p>
+        </div>
+        <br/>
+        <div class="grid">
+        <div class="card">
+          <h4>Garment Iteration</h4>
+          <p>
+            Early versions integrated sensors into a single garment. Later versions
+            separated the system into modular parts to improve comfort and usability.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4>Sensor Testing</h4>
+          <p>
+            Respiration and sEMG sensors were tested for real-time response, signal
+            stability, and interaction accuracy.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4>User Feedback</h4>
+          <p>
+            Feedback highlighted the importance of comfort, accurate sensor placement,
+            breathability, and ease of wearing.
+          </p>
+        </div>
+      </div>
+      <br/>
+      <div class="image-box">
+            <figure id="fig-design">
+              <a href="images/flowup_design.png" target="_blank">
+                <img src="images/flowup_design.png" alt="Prototype Design Process." />
+              </a>
+          <figcaption>
+          <strong>Prototype Design Process.</strong>
+          </figcaption>
+          </figure>
+        </div>
+      <br/>
+        <p>
+          We especially conducted integrated testing of the stretchable respiration and sEMG sensors and 
+          successfully demonstrated their interaction with the game environment. 
+          To clearly demonstrate the breathing functionality, we monitored respiration signals and developed a simple ball game. 
+          In this <a href="#fig-test">testing</a>, inhalation causes the ball to rise, while exhalation causes it to fall. 
+          During the tests, group members wore the stretchable respiration sensor around their abdomens. 
+          The real-time sensor signal accurately captured the user's breathing pattern and was used to control the 
+          vertical movement of the training ball (later replaced by game characters). 
+          The test results show that the sensor has a low response delay and provides stable signal acquisition. 
+          Both deep and rapid breathing patterns can be accurately detected, while the wearable design remains 
+          comfortable for the user during operation.
+        </p>
+        <br/>
+        <div class="image-box">
+            <figure id="fig-test">
+              <a href="images/flowup_test.png" target="_blank">
+                <img src="images/flowup_test.png" alt="Respiration Testing." />
+              </a>
+          <figcaption>
+          <strong>Respiration Testing.</strong>
+          </figcaption>
+          </figure>
+        </div>
+        <br/>
+        <p>
+          After wearing the sEMG sensor, the trained Logistic Regression model is used to identify the following in real time:
+          <strong>Relaxed state (0)</strong> and <strong>Contraction state (1)</strong>.
+          Active muscle contractions can reliably trigger the shooting action, while the relaxed state does not produce false triggers. 
+          Continuous muscle contractions enable sustained attacks, and multiple participants were able to control the game reliably after a short period of practice.
+          As a result, both sensors demonstrate good real-time performance, stable signal acquisition, and smooth interaction, meeting the requirements for interactive training applications.
+        </p>
+        <br/>
+        <div class="image-box">
+            <figure id="fig-emg-test">
+              <a href="images/flowup_emg_test.png" target="_blank">
+                <img src="images/flowup_emg_test.png" alt="sEMG Testing." />
+              </a>
+          <figcaption>
+          <strong>sEMG Testing.</strong>
+          </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo Video -->
+    <section id="demo">
+      <div class="section-title">
+        <span>Demo</span>
+        <h3>Project Demonstration</h3>
+        <p>
+          Below is a short demo video to show our final prototype.
+        </p>
+      </div>
+
+      <div class="image-box">
+        <video controls src="FlowUp.mp4" type="video/mp4">
+        Your browser does not support the video tag.></video>
+      </div>
+    </section>
+
+    <!-- Future Development -->
+    <section id="future">
+      <div class="section-title">
+        <span>Future Development</span>
+        <h3>Challenges</h3>
+        <p>
+          Future improvements could focus on wireless communication, sensor washability,
+          improved comfort, privacy protection, and more advanced signal processing.
+          We also created <a href="#fig-test">design concepts and sketches</a> to explore the future commercialization 
+          of the prototype and its potential form as a consumer product.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h4>Wireless System</h4>
+          <p>Reduce cable limitations and make the wearable experience more natural.</p>
+        </div>
+
+        <div class="card">
+          <h4>Wearability</h4>
+          <p>Improve breathability, adjustability, and long-term comfort for different users.</p>
+        </div>
+
+        <div class="card">
+          <h4>Signal Processing</h4>
+          <p>Improve filtering and classification accuracy for real-world use conditions.</p>
+        </div>
+      </div>
+      <br/>
+      <div class="image-box">
+            <figure id="fig-future">
+              <a href="images/flowup_future.png" target="_blank">
+                <img src="images/flowup_future.png" alt="Future Product Concept Sketches." />
+              </a>
+          <figcaption>
+          <strong>Future Product Concept Sketches.</strong>
+          </figcaption>
+          </figure>
+        </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+  <div class="footer-text">
+    <p>
+      &copy; ELEC-E7845 Smart Wearables II 2025 Autumn Project: FlowUp. All rights reserved.
+    </p>
+    <p>
+      Authors: Wenying Jia, Kecen Yin, Yifan Zhu, Yumeng Sun
+    </p>
+  </div>
+  <div class="footer-logo">
+    <img src="images/aalto.png" alt="Aalto University School of Electrical Engineering" height="80">
+  </div>
+</footer>
+
+</body>
+</html>

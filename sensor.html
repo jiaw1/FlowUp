@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css">
+  <title>FlowUp</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1><a href="index.html">FlowUp &#127811;</a></h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="overview.html">Overview</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="sensor.html">Sensor</a></li>
+        <li><a href="hardware.html">Hardware</a></li>
+        <li><a href="software.html">Software</a></li>
+        <li><a href="testing.html">Testing</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Sensor Selection -->
+    <section id="sensor">
+      <div class="section-title">
+        <span>Sensor Selection</span>
+        <h3>From Physiological Signals to Playful Biofeedback</h3>
+        <p>
+            It is essential to identify suitable sensor types when designing our prototype to detect 
+            physiological responses associated with stress. 
+            Research in affective computing and psychophysiology has demonstrated that several physiological 
+            signals provide reliable indicators of emotional arousal and cognitive load \cite{picard1997}. 
+            These signals include respiration, surface electromyography (sEMG), and galvanic skin response (GSR).
+            Respiration sensors monitor breathing rate, depth, and rhythm, all of which are closely associated with stress and relaxation.
+            sEMG sensors measure the electrical activity produced by muscle contractions and can be used to detect 
+            tension-related responses. GSR sensors measure changes in skin conductance, which reflect 
+            variations in sweat gland activity caused by emotional arousal. GSR sensing is commonly integrated into wearable 
+            devices such as smartwatches and stress trackers.
+        </p>
+        <br/>
+        <p>
+            In our project, we developed textile-based sensors to detect these three physiological signals. 
+            Our primary focus, however, is on respiration, as breathing patterns play a key role in interactive stress-management 
+            applications involving guided breathing exercises.
+            For respiration detection, we fabricated a sensor using conductive stretch fabric. 
+            The sensor operates on a resistive principle, meaning that its electrical resistance changes as the fabric stretches. 
+            By measuring the resulting voltage variations, we can estimate the user's respiration rate.
+            For sEMG detection, we employed a similar fabrication approach to that used for the GSR sensor. 
+            Conductive silver threads were embroidered into fabric to function as textile electrodes. 
+            Our goal was to develop reusable e-textile electrodes that are more sustainable than conventional disposable electrodes 
+            while providing the comfort and flexibility of regular fabric.
+            For GSR detection, we used conductive silver thread embroidered into regular fabric to create textile-based electrodes. 
+            The electrodes were integrated into a glove to improve ease of use and wearability. The entirely textile-based design 
+            makes the sensor soft, comfortable, and capable of fitting snugly around the fingers.
+        </p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h4>Respiration Sensor</h4>
+          <p>
+            A stretchable textile sensor detects expansion and contraction during breathing.
+            Inhalation and exhalation are used as real-time inputs for the breathing game.
+          </p>
+          <br/>
+          <div class="image-box">
+            <img src="images/flowup_respiration.png" alt="Respiration Sensor" />
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>sEMG Sensor</h4>
+          <p>
+            Surface electromyography sensors detect muscle activity and classify the
+            user’s state as relaxed or actively contracting.
+          </p>
+          <br/>
+          <br/>
+          <br/>
+          <div class="image-box">
+            <img src="images/flowup_semg.png" alt="sEMG Sensor" />
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>GSR Sensor</h4>
+          <p>
+            Galvanic skin response sensing is used to explore emotional and physiological
+            changes related to stress and arousal.
+          </p>
+          <br/>
+          <br/>
+          <br/>
+          <div class="image-box">
+            <img src="images/flowup_gsr.png" alt="GSR Sensor" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+  <div class="footer-text">
+    <p>
+      &copy; ELEC-E7845 Smart Wearables II 2025 Autumn Project: FlowUp. All rights reserved.
+    </p>
+    <p>
+      Authors: Wenying Jia, Kecen Yin, Yifan Zhu, Yumeng Sun
+    </p>
+  </div>
+  <div class="footer-logo">
+    <img src="images/aalto.png" alt="Aalto University School of Electrical Engineering" height="80">
+  </div>
+</footer>
+
+</body>
+</html>
